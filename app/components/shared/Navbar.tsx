@@ -1,33 +1,43 @@
-"use client"; // Necesario porque usaremos animaciones
-import { motion } from "framer-motion";
+"use client";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import Link from 'next/link';
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <motion.nav 
-      initial={{ y: -50, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="flex justify-between items-center py-6 px-12 bg-legal-black border-b border-legal-gold/20"
-    >
-      <div className="text-legal-gold font-serif text-3xl font-bold tracking-tighter">
-        <Link href="/">GJ</Link>
+    <nav className="relative z-50 bg-black py-6 px-6 flex items-center justify-between border-b border-white/10">
+      <div className="text-legal-gold font-bold text-2xl">GJ</div>
+
+      {/* Menú Escritorio */}
+      <div className="hidden md:flex gap-8 text-white text-sm uppercase tracking-widest">
+        <Link href="/" className="hover:text-legal-gold">Inicio</Link>
+        <Link href="/socios" className="hover:text-legal-gold">Socios</Link>
+        <Link href="/servicios" className="hover:text-legal-gold">Servicios</Link>
       </div>
 
-      <div className="flex items-center gap-10 text-white font-sans text-sm tracking-widest uppercase">
-        <Link href="/" className="hover:text-legal-gold transition-colors duration-300">Inicio</Link>
-        <Link href="/socios" className="hover:text-legal-gold transition-colors duration-300">Socios</Link>
-        <Link href="/servicios" className="hover:text-legal-gold transition-colors duration-300">Servicios</Link>
-        
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <Link 
-            href="/contacto" 
-            className="bg-legal-gold text-legal-black px-6 py-3 font-bold uppercase hover:bg-transparent hover:text-legal-gold border border-legal-gold transition-all duration-300"
+      {/* Botón hamburguesa móvil */}
+      <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? <X /> : <Menu />}
+      </button>
+
+      {/* Menú Móvil desplegable */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute top-full left-0 w-full bg-black border-b border-legal-gold p-6 flex flex-col gap-4 text-center"
           >
-            Asesoría Inmediata
-          </Link>
-        </motion.div>
-      </div>
-    </motion.nav>
+            <Link href="/" className="text-white" onClick={() => setIsOpen(false)}>Inicio</Link>
+            <Link href="/socios" className="text-white" onClick={() => setIsOpen(false)}>Socios</Link>
+            <Link href="/servicios" className="text-white" onClick={() => setIsOpen(false)}>Servicios</Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
   );
 }
