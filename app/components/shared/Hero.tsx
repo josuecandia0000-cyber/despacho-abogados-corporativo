@@ -1,12 +1,13 @@
-// components/shared/Hero.tsx
 "use client";
 import { motion } from "framer-motion";
 import Link from 'next/link';
 
 export default function Hero() {
   return (
-    <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
-      {/* Fondo con imagen simulada o gradiente premium */}
+    // h-[calc(100vh-88px)] ocupa toda la pantalla disponible bajo el navbar
+    <section className="relative h-[calc(100vh-88px)] flex items-center justify-center overflow-hidden">
+      
+      {/* Fondo con imagen y gradiente de cobertura */}
       <div className="absolute inset-0 bg-[url('/bg-hero.jpg')] bg-cover bg-center bg-no-repeat opacity-30" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-legal-black" />
 

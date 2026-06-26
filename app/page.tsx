@@ -1,9 +1,15 @@
+import Hero from "./components/shared/Hero";
+import Features from "./components/shared/Features";
+import Contact from "./components/shared/Contact";
+import Partners from "./components/shared/Partners";
+
 export default function Home() {
   return (
-    <main className="min-h-screen flex items-center justify-center">
-      <h1 className="text-legal-gold text-6xl font-bold border-4 border-legal-gold p-8">
-        DESPACHO JURÍDICO
-      </h1>
+    <main>
+      <Hero />
+      <Features />
+      <Partners />
+      <Contact />
     </main>
   );
 }
