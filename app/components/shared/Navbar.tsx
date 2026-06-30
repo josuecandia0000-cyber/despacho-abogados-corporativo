@@ -9,13 +9,14 @@ export default function Navbar() {
 
   return (
     <nav className="relative z-50 bg-black py-6 px-6 flex items-center justify-between border-b border-white/10">
-      <div className="text-legal-gold font-bold text-2xl">GJ</div>
+      <Link href="/" className="text-legal-gold font-bold text-2xl">GJ</Link>
 
       {/* Menú Escritorio */}
       <div className="hidden md:flex gap-8 text-white text-sm uppercase tracking-widest">
-        <Link href="/" className="hover:text-legal-gold">Inicio</Link>
-        <Link href="/socios" className="hover:text-legal-gold">Socios</Link>
-        <Link href="/servicios" className="hover:text-legal-gold">Servicios</Link>
+        <Link href="/" className="hover:text-legal-gold transition-colors">Inicio</Link>
+        <Link href="/socios" className="hover:text-legal-gold transition-colors">Socios</Link>
+        <Link href="/servicios" className="hover:text-legal-gold transition-colors">Servicios</Link>
+        <Link href="/contacto" className="border border-legal-gold px-4 py-2 hover:bg-legal-gold hover:text-black transition-all">Contacto</Link>
       </div>
 
       {/* Botón hamburguesa móvil */}
@@ -30,11 +31,12 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 w-full bg-black border-b border-legal-gold p-6 flex flex-col gap-4 text-center"
+            className="absolute top-full left-0 w-full bg-black border-b border-legal-gold p-8 flex flex-col gap-6 text-center"
           >
-            <Link href="/" className="text-white" onClick={() => setIsOpen(false)}>Inicio</Link>
-            <Link href="/socios" className="text-white" onClick={() => setIsOpen(false)}>Socios</Link>
-            <Link href="/servicios" className="text-white" onClick={() => setIsOpen(false)}>Servicios</Link>
+            <Link href="/" onClick={() => setIsOpen(false)}>Inicio</Link>
+            <Link href="/socios" onClick={() => setIsOpen(false)}>Socios</Link>
+            <Link href="/servicios" onClick={() => setIsOpen(false)}>Servicios</Link>
+            <Link href="/contacto" className="text-legal-gold font-bold" onClick={() => setIsOpen(false)}>Contacto</Link>
           </motion.div>
         )}
       </AnimatePresence>
